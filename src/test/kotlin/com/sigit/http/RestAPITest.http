@@ -1,2 +1,6 @@
 GET http://localhost:8080/?name=sigit&email=kangsigit@gmail.com
 Accept: application/json
+
+###
+GET http://localhost:8080/iphones/8
+Accept: application/json
