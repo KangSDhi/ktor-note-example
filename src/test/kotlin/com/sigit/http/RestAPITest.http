@@ -1,0 +1,2 @@
+GET http://localhost:8080/?name=sigit&email=kangsigit@gmail.com
+Accept: application/json
