@@ -1,5 +1,6 @@
 package com.sigit
 
+import com.sigit.entities.NoteEntity
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -13,6 +14,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.json.Json
 import org.ktorm.database.Database
+import org.ktorm.dsl.insert
 
 fun main(){
     embeddedServer(Netty, port=8080, host="0.0.0.0"){
@@ -30,6 +32,18 @@ fun main(){
             user = "root",
             password = "toor"
         )
+
+        database.insert(NoteEntity){
+            set(it.note, "Wash Clothes")
+        }
+
+        database.insert(NoteEntity){
+            set(it.note, "Buy Groceries")
+        }
+
+        database.insert(NoteEntity){
+            set(it.note, "Workout")
+        }
     }.start(wait = true)
 }
 
