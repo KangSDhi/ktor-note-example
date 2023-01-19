@@ -1,6 +1,17 @@
+### Get /
 GET http://localhost:8080/?name=sigit&email=kangsigit@gmail.com
 Accept: application/json
 
-###
+### Get /iphones/param
 GET http://localhost:8080/iphones/8
 Accept: application/json
+
+### POST /login
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "kangsigit@gmail.com",
+  "password": "password123"
+}
