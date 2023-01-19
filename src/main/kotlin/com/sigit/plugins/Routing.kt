@@ -34,6 +34,11 @@ fun Application.configureRouting() {
             val responseObject = UserResponse("sigit", "kangsigit@gmail.com")
             call.respond(responseObject)
         }
+
+        get("/headers"){
+            call.response.headers.append("Server-Name", "KtorServer")
+            call.respondText("Headers Attached")
+        }
     }
 }
 
