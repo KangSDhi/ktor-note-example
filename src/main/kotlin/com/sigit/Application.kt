@@ -14,9 +14,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.json.Json
 import org.ktorm.database.Database
-import org.ktorm.dsl.from
-import org.ktorm.dsl.insert
-import org.ktorm.dsl.select
+import org.ktorm.dsl.*
 
 fun main(){
     embeddedServer(Netty, port=8080, host="0.0.0.0"){
@@ -35,12 +33,16 @@ fun main(){
             password = "toor"
         )
 
-        var notes = database.from(NoteEntity)
-            .select()
-        for (row in notes){
-            println("${row[NoteEntity.id]}: ${row[NoteEntity.note]}")
+        database.update(NoteEntity){
+            set(it.note, "Learning Ktor")
+            where {
+                it.id eq 2
+            }
         }
 
+        database.delete(NoteEntity){
+            it.id eq 1
+        }
 
     }.start(wait = true)
 }
