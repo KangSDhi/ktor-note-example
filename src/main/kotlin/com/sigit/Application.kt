@@ -12,6 +12,7 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.json.Json
+import org.ktorm.database.Database
 
 fun main(){
     embeddedServer(Netty, port=8080, host="0.0.0.0"){
@@ -22,6 +23,13 @@ fun main(){
             })
         }
         configureRouting()
+
+        val database = Database.connect(
+            url = "jdbc:mysql://localhost:3307/ktor_note",
+            driver = "com.mysql.cj.jdbc.Driver",
+            user = "root",
+            password = "toor"
+        )
     }.start(wait = true)
 }
 
