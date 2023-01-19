@@ -14,7 +14,9 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.json.Json
 import org.ktorm.database.Database
+import org.ktorm.dsl.from
 import org.ktorm.dsl.insert
+import org.ktorm.dsl.select
 
 fun main(){
     embeddedServer(Netty, port=8080, host="0.0.0.0"){
@@ -33,17 +35,13 @@ fun main(){
             password = "toor"
         )
 
-        database.insert(NoteEntity){
-            set(it.note, "Wash Clothes")
+        var notes = database.from(NoteEntity)
+            .select()
+        for (row in notes){
+            println("${row[NoteEntity.id]}: ${row[NoteEntity.note]}")
         }
 
-        database.insert(NoteEntity){
-            set(it.note, "Buy Groceries")
-        }
 
-        database.insert(NoteEntity){
-            set(it.note, "Workout")
-        }
     }.start(wait = true)
 }
 
