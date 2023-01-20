@@ -27,3 +27,7 @@ Accept: application/json
 ### GET /headers
 GET http://localhost:8080/headers
 Accept: application/json
+
+### GET /notes
+GET http://localhost:8080/notes
+Accept: application/json
