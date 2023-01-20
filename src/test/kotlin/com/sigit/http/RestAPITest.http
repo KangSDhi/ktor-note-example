@@ -31,3 +31,12 @@ Accept: application/json
 ### GET /notes
 GET http://localhost:8080/notes
 Accept: application/json
+
+### POST /notes
+POST http://localhost:8080/notes
+Accept: application/json
+Content-Type: application/json
+
+{
+  "note": "Learn Android Development"
+}
